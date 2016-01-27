@@ -5,7 +5,7 @@
      <classes>
          <class name="test.java.BuildDeviesList"/>
          <class name="test.java.NativeExe"/>
-         <class name="test.java.DomExe"/>
+       <!--  <class name="test.java.DomExe"/>-->
       </classes>
  </test>
 </suite>
