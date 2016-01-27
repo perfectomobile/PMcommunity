@@ -45,7 +45,7 @@
 				<version>2.16</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>${basedir}/${testngFile}</suiteXmlFile>
+						<suiteXmlFile>${basedir}/${suite}</suiteXmlFile>
 					</suiteXmlFiles>
 					
 					 <skipTests>${skipTests}</skipTests>
