@@ -14,6 +14,7 @@
 		<jxl.version>2.6.12</jxl.version>
 		<testng.version>6.8.8</testng.version>
 		<reportng.version>1.1.4</reportng.version>
+		<maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
 	</properties>
 
 	<build>
