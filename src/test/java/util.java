@@ -38,8 +38,8 @@ public class util {
 
 	public static String REPORT_LIB = "/community/";
 	public static String SCREENSHOTS_LIB = "/community/";
-	protected static String user = "admint";
-	protected static String password = "admin";
+	protected static String user = System.getProperty("np.testUsername", "test_automation@gmail.com");
+	protected static String password = System.getProperty("np.testPassword", "Test_automation");
 	protected static String host = System.getProperty("np.testHost", "branchtest.perfectomobile.com");
 	
 	public static void closeTest(RemoteWebDriver driver)
