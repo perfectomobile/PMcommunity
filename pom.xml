@@ -52,6 +52,34 @@
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven.failsafe.plugin.version}</version>
+				<configuration>
+					<argLine>${argLine}</argLine>
+					<systemProperties>
+						<np.testHost>${env.NP_TEST_HOST}</np.testHost>
+						<np.testUsername>${env.NP_TEST_USERNAME}</np.testUsername>
+						<np.testPassword>${env.NP_TEST_PASSWORD}</np.testPassword>
+						<np.testDeviceOptionalParameters>${env.NP_TEST_DEVICE_OPTIONAL_PARAMETERS}</np.testDeviceOptionalParameters>
+						<np.testCreateDriverRetries>${env.NP_TEST_CREATE_DRIVER_RETRIES}</np.testCreateDriverRetries>
+					</systemProperties>
+					<properties>
+						<property>
+							<name>usedefaultlisteners</name>
+							<value>false</value>
+						</property>
+						<property>
+							<name>listener</name>
+							<value>org.uncommons.reportng.HTMLReporter,
+								org.uncommons.reportng.JUnitXMLReporter</value>
+						</property>
+					</properties>
+					<skip>false</skip>
+					<useFile>false</useFile>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
