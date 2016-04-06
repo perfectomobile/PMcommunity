@@ -89,7 +89,13 @@ public class NativeExe {
 		try {
 
 			_RWD.closeApp();
-			_RWD.removeApp("com.bloomfire.enterprise.perfecto");
+			if(platform.equalsIgnoreCase("ios"))
+			{
+				_RWD.removeApp("com.bloomfire.enterprise.perfecto");
+			}else
+			{
+				_RWD.removeApp("com.bloomfire.android.perfecto");
+			}
 			_RWD.close();	
 			String repName = "test_comm_"+deviceID;
 			util.downloadReport(_RWD, "pdf",repName);	
