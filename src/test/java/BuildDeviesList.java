@@ -1,5 +1,6 @@
 package test.java;
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,7 +18,7 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
-import test.java.util;
+
 
 public class BuildDeviesList {
 protected static String host = System.getProperty("np.testHost", "branchtest.perfectomobile.com");
@@ -26,7 +27,7 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 //	public static void main(String[] args) throws IOException {
 	public void deviceList () throws IOException {
 		List<Device> listDevices = new ArrayList<Device>();
-
+		System.out.println(host);
 		//String devList = getData();
 		String iosApp = "com.bloomfire.enterprise.perfecto";
 		String AndroidApp = "com.bloomfire.android.perfecto";
@@ -69,7 +70,6 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 					Device d = new Device("ios", iosApp, id, null, ipaLocation);
 					System.out.println(d);
 					listDevices.add(d);
-					
 //					System.out.println("{\"ios\",\""+iosApp+"\",\""+id+"\",null,\""+ipaLocation+"\"},");
 
 				}
@@ -78,32 +78,29 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 					Device d = new Device("Android", AndroidApp, id, null, apkLocation);
 					System.out.println(d);
 					listDevices.add(d);
-					
-//					System.out.println("{\"Android\",\""+AndroidApp+"\",\""+id+"\",null,\""+apkLocation+"\"},");
 
 				}
 				else
 				{
 					// does not support window or BB
 				}
-				// String platform,String app,String deviceID,String persona,String applcation) {
-				//{"iOS","com.united.UnitedCustomerFacingIPhone","39F3DA5531ADBE2A05CFF4D65E43A2C38D3D595A",null,null},
 			 
 				 
 			}
 
 		} catch (Exception e) {
-			System.out.println("ccan parse XML ");
+			System.out.println("can't parse XML ");
 			e.printStackTrace();
 		}
 		util.writeToXml(listDevices);
+		System.out.println(host);
 		
 	}
 	
 
 	private static InputStream getFdata()
 	{
-		File initialFile = new File("/community/handsets.xml");
+		File initialFile = new File("target/handsets.xml");
 		try {
 			InputStream targetStream = new FileInputStream(initialFile);
 			return targetStream;
@@ -119,7 +116,7 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 		try {
 			
 			String URLDevices =  "https://" + host + "/services/handsets?operation=list&user=test_automation@gmail.com&password=Test_automation&status=connected";
-
+			System.out.println (URLDevices);
 			URL obj = new URL(URLDevices);
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
