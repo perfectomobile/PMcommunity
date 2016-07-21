@@ -36,14 +36,17 @@ import com.thoughtworks.xstream.XStream;
 
 public class util {
 
-	public static String REPORT_LIB = "/community/";
-	public static String SCREENSHOTS_LIB = "/community/";
+	public static String REPORT_LIB = "target";
+	public static String SCREENSHOTS_LIB = "target";
 	protected static String user = System.getProperty("np.testUsername", "test_automation@gmail.com");
 	protected static String password = System.getProperty("np.testPassword", "Test_automation");
 	protected static String host = System.getProperty("np.testHost", "branchtest.perfectomobile.com");
-	
+//	protected static String user = System.getProperty("np.testUsername", "admint");
+//	protected static String password = System.getProperty("np.testPassword", "admin");
+//	protected static String host = System.getProperty("np.testHost", "web-demo2.perfectomobile.com");
 	public static void closeTest(RemoteWebDriver driver)
 	{
+		System.out.println(host);
 		System.out.println("CloseTest");
 		driver.quit();
 	}
@@ -82,16 +85,10 @@ public class util {
 			capabilities.setCapability("deviceName",  deviceId);
 			capabilities.setCapability("platformName",  platform);
 			
-//			String host = null;
-//			capabilities.setCapability("host", host);
-			
-
-			//capabilities.setCapability("takesScreenShot", false);
-			//capabilities.setCapability("automationName", "PerfectoMobile");
 			try {
 				webdriver = new  AndroidDriver(new URL("https://" + host + "/nexperience/perfectomobile/wd/hub") , capabilities);
 			} catch (Exception e) {
-				String ErrToRep = e.getMessage().substring(0,e.getMessage().indexOf("Command duration")-1);
+				String ErrToRep = e.getMessage().substring(0,e.getMessage().indexOf("Command duration is ")-1);
 				System.out.println(ErrToRep);
 				return (null);
 
@@ -99,27 +96,10 @@ public class util {
 			}
 		}
 		return webdriver;
+		
 
 	}
-//	public static RemoteWebDriver getRWD(String deviceId,String app,String platform,String persona,String appLocation,HTMLReporter rep) {
-//		
-//		return getRWD(platform,"https://" + host , user , password ,persona,rep);
-//	}
-//	public static RemoteWebDriver getRWD(String deviceId,String platform,String Cloud,String user,String password,String persona,HTMLReporter rep) throws MalformedURLException{
-//		
-//		
-//		String browserName = "mobileOS";
-//		DesiredCapabilities capabilities = new DesiredCapabilities(browserName, "", Platform.ANY);
-//		capabilities.setCapability("user", user);
-//		capabilities.setCapability("password", password);
-//		capabilities.setCapability("deviceName", deviceId);
-//		
-////		capabilities.setCapability("platformName", platform);
-//	
-//		RemoteWebDriver webdriver = new RemoteWebDriver(new URL("https://" + host + "/nexperience/perfectomobile/wd/hub"), capabilities);
-//		
-//		return webdriver;
-//	}
+
 
 	public static AppiumDriver getAppiumDriver(String deviceId,String app,String platform,String persona,String appLocation,HTMLReporter rep)   {
 		return getAppiumDriver(deviceId,app,platform,"https://" + host , user , password ,persona,appLocation,rep);
@@ -356,7 +336,7 @@ public class util {
            String xml = null;
            try {
    			xml = xstream.toXML(list);
-         File newTextFile = new File("C:/community/t.xml");
+   		   File newTextFile = new File("target/t.xml");
          FileWriter fw = new FileWriter(newTextFile);
          fw.write(xml);
          fw.close();
@@ -372,7 +352,7 @@ public class util {
     public static String[][] readFromXml() throws IOException{
            XStream xstream = new XStream();
            String xml = null;
-           BufferedReader br = new BufferedReader(new FileReader("c:/community/t.xml"));
+           BufferedReader br = new BufferedReader(new FileReader("target/t.xml"));
            try {
                 StringBuilder sb = new StringBuilder();
                 String line = br.readLine();
@@ -407,7 +387,7 @@ public class util {
     public static String[][] readFromXmlForWeb() throws IOException{
         XStream xstream = new XStream();
         String xml = null;
-        BufferedReader br = new BufferedReader(new FileReader("c:/community/t.xml"));
+        BufferedReader br = new BufferedReader(new FileReader("target/t.xml"));
         try {
              StringBuilder sb = new StringBuilder();
              String line = br.readLine();
