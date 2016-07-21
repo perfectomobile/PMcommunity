@@ -3,7 +3,7 @@
 <suite name="testList" thread-count="4">
    <test name="myTest">
      <classes>
-            <!--class name="test.java.BuildDeviesList"/-->
+            <class name="test.java.BuildDeviesList"/>
             <class name="test.java.NativeExe"/>
        <!--  <class name="test.java.DomExe"/>-->
       </classes>
