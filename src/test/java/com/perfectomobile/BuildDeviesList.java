@@ -34,6 +34,7 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 
 	@BeforeClass
     public void initReportium(){
+        System.out.println("Initializing reportium");
         PerfectoExecutionContext perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
                 .withProject(new Project("Sample Selenium-Reportium project" , "1.0")) //Optional
                 .withContextTags("Regression" , "SampleTag1" , "SampleTag2") //Optional
