@@ -40,6 +40,7 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
                 .withContextTags("Regression" , "SampleTag1" , "SampleTag2") //Optional
                 .build();
         reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(perfectoExecutionContext);
+        reportiumClient.testStart("deviceList",new TestContext("Check devices"));
     }
 
     @Test
