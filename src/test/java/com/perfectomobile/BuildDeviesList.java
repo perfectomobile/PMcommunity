@@ -30,7 +30,7 @@ import org.w3c.dom.Node;
 public class BuildDeviesList {
 protected static String host = System.getProperty("np.testHost", "branchtest.perfectomobile.com");
 
-	protected ReportiumClient reportiumClient;
+	protected static ReportiumClient reportiumClient;
 
 	@BeforeClass
     public void initReportium(){
