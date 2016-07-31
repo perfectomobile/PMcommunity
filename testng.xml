@@ -3,9 +3,9 @@
 <suite name="testList" thread-count="4">
    <test name="myTest">
      <classes>
-            <class name="test.java.BuildDeviesList"/>
-            <class name="test.java.NativeExe"/>
-       <!--  <class name="test.java.DomExe"/>-->
+            <class name="com.perfectomobile.BuildDeviesList"/>
+            <class name="com.perfectomobile.NativeExe"/>
+       <!--  <class name="com.perfectomobile.DomExe"/>-->
       </classes>
  </test>
 </suite>
