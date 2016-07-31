@@ -3,27 +3,27 @@
 <suite thread-count="4" guice-stage="DEVELOPMENT" name="Failed suite [testList]">
   <test name="myTest">
     <classes>
-      <class name="test.java.BuildDeviesList"/>
-      <class name="test.java.NativeExe"/>
-      <class name="test.java.DomExe"/>
+      <class name="com.perfectomobile.BuildDevicesList"/>
+      <class name="com.perfectomobile.NativeExe"/>
+      <class name="com.perfectomobile.DomExe"/>
     </classes>
   </test> <!-- myTest -->
   <test name="myTest(failed)">
     <classes>
-      <class name="test.java.DomExe">
+      <class name="com.perfectomobile.DomExe">
         <methods>
           <include name="BeforeSuite"/>
           <include name="AfterSuite"/>
           <include name="testDevices" invocation-numbers="2 5 0 1 4 7 6 3"/>
         </methods>
-      </class> <!-- test.java.DomExe -->
-      <class name="test.java.NativeExe">
+      </class> <!-- com.perfectomobile.DomExe -->
+      <class name="com.perfectomobile.NativeExe">
         <methods>
           <include name="testDevices" invocation-numbers="2 7 0 5 4 3 6"/>
           <include name="BeforeSuite"/>
           <include name="AfterSuite"/>
         </methods>
-      </class> <!-- test.java.NativeExe -->
+      </class> <!-- com.perfectomobile.NativeExe -->
     </classes>
   </test> <!-- myTest(failed) -->
 </suite> <!-- Failed suite [testList] -->

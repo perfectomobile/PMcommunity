@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="testList" thread-count="4">
-   <test name="myTest">
-     <classes>
-            <class name="com.perfectomobile.BuildDeviesList"/>
+   <!--<test name="myTest">-->
+     <!--<classes>-->
+            <!--&lt;!&ndash;<class name="com.perfectomobile.BuildDevicesList"/>&ndash;&gt;-->
+            <!--<class name="com.perfectomobile.NativeExe"/>-->
+       <!--&lt;!&ndash;  <class name="com.perfectomobile.DomExe"/>&ndash;&gt;-->
+      <!--</classes>-->
+    <!--</test>-->
+
+    <test name="Test Android">
+        <parameter name="platformName" value="Android" />
+        <parameter name="model" value= "" />
+        <parameter name="browserName" value="mobileOS" />
+        <parameter name="location" value="" />
+        <classes>
             <class name="com.perfectomobile.NativeExe"/>
-       <!--  <class name="com.perfectomobile.DomExe"/>-->
-      </classes>
- </test>
+        </classes>
+    </test>
+
+    <test name="Test iOS">
+        <parameter name="platformName" value="iOS" />
+        <parameter name="model" value= "" />
+        <parameter name="browserName" value="mobileOS" />
+        <parameter name="location" value="" />
+        <classes>
+            <class name="com.perfectomobile.NativeExe"/>
+        </classes>
+    </test>
+
 </suite>

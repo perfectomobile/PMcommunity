@@ -1,124 +1,145 @@
 package com.perfectomobile;
 
 
+import com.perfecto.reportium.client.ReportiumClient;
+import com.perfecto.reportium.client.ReportiumClientFactory;
+import com.perfecto.reportium.model.PerfectoExecutionContext;
+import com.perfecto.reportium.model.Project;
+import com.perfecto.reportium.test.TestContext;
+import com.perfecto.reportium.test.result.TestResultFactory;
 import io.appium.java_client.AppiumDriver;
 
 import java.io.IOException;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import org.testng.annotations.Test;
-import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.DataProvider;
+import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.*;
+import org.testng.Assert;
 
 
 public class NativeExe {
 
 	communityTest test= null;
-	HTMLReporter _rep ;
-	@BeforeSuite
-	public void BeforeSuite() {
-		System.out.println(" *** OpenRep");
-		
-		Date date =  Calendar.getInstance().getTime();
-        // Display a date in day, month, year format
-        DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        String today = formatter.format(date);
-        System.out.println("Today : " + today);
-		
-		String fileName = "CommStats_"+ today +".html";
-		_rep = new HTMLReporter(fileName, "/community/", "Perfecto");
 
-		// add one reporter in the before test will be used by all the tests
+	private String PERFECTO_HOST        = System.getProperty("np.testHost", "branchtest.perfectomobile.com");
+	private String PERFECTO_USER        = System.getProperty("np.testUsername", "test_automation@gmail.com");
+	private String PERFECTO_PASSWORD    = System.getProperty("np.testPassword", "Test_automation");
 
-	}
+    private static RemoteWebDriver driver;
+    private ReportiumClient reportiumClient;
 
+    @Parameters({"platformName" , "model" , "browserName" , "location"})
+    @BeforeTest
+    public void beforeMethod(String platformName, String model, String browserName, String location) throws MalformedURLException {
 
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("user" , PERFECTO_USER);
+        capabilities.setCapability("password" , PERFECTO_PASSWORD);
+        capabilities.setCapability("platformName" , platformName);
+        capabilities.setCapability("model" , model);
+        capabilities.setCapability("browserName" , browserName);
+        capabilities.setCapability("location" , location);
 
-	@AfterSuite
-	public void AfterSuite(){
-		System.out.println("**  End Rep");
-		_rep.closeRep();
+        driver = new RemoteWebDriver(new URL("https://" + PERFECTO_HOST + "/nexperience/perfectomobile/wd/hub") , capabilities);
+        driver.manage().timeouts().implicitlyWait(15 , TimeUnit.SECONDS);
 
-	}
-
-	// com.united.UnitedCustomerFacingIPhone
-	// PackageName: com.android.launcher
-
-
-	@DataProvider(name = "Devices" , parallel = true)
-	public Object[][] testSumInput() throws IOException {
-			return util.readFromXml();
-	}
+        //Create Reportium client.
+        reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(
+                new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
+                        .withProject(new Project("Sample Selenium-Reportium" , "1.0"))
+                        .withContextTags("Regression") //Optional
+                        .withWebDriver(driver) //Optional
+                        .build());
+    }
 
 
-	//@Parameters({ "deviceID" })
-	@Test (dataProvider="Devices" )
+    @Test
+	public void testDevices() {
+        if (driver.getCapabilities().getCapability("platformName").toString().equalsIgnoreCase("android")){
+            reportiumClient.testStart("Android-Community",new TestContext("Native EXE"));
+            try {
+                driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
+                driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
-	public void testDevices(String platform,String app,String deviceID,String persona,String applocation) {
-		boolean rc =false;
+                driver.findElement(By.xpath("//android.widget.EditText[1]")).sendKeys("uzie@perfectomobile.com");
+                driver.findElement(By.xpath("//android.widget.EditText[2]")).sendKeys("Perfecto1");
+                driver.findElement(By.xpath("//android.widget.Button[@text='Log In']")).click();
+                driver.findElement(By.xpath("//*[@resource-id='com.bloomfire.android.perfecto:id/home_screen_filter']")).click();
+                driver.findElement(By.xpath("//*[@text='Clear Filters']")).click();
+                driver.findElement(By.xpath("//*[@text='filter by category']")).click();
+                driver.findElement(By.xpath("(//android.widget.CheckBox)[2]")).click();
+                //checks the second check box
+                driver.findElement(By.xpath("(//android.widget.CheckBox)[4]")).click();
+                driver.findElement(By.xpath("(//*[@text='Done'])[1]")).click();
+                util.sleep(500);
+                driver.findElement(By.xpath("(//*[@text='Done'])[1]")).click();
+                reportiumClient.testStop(TestResultFactory.createSuccess());
 
-		test= new communityTest(_rep,deviceID,app,platform,persona,applocation);
+            } catch (Exception e) {
+                reportiumClient.testStop(TestResultFactory.createFailure("Exception encountered",e));
+                e.printStackTrace();
+            }
+        } else{
+            reportiumClient.testStart("IOS-Community",new TestContext("Native EXE"));
+            try {
+                driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+                try {
+                    driver.findElement(By.xpath("//UIAButton[@name='OK']")).click();
 
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+                driver.findElement(By.xpath("(//UIATextField)[2]")).clear();
 
+                driver.findElement(By.xpath("(//UIATextField)[2]")).sendKeys("uzie@perfectomobile.com");
+                driver.findElement(By.xpath("(//UIASecureTextField)[2]")).sendKeys("Perfecto1");
+                driver.findElement(By.xpath("(//UIAButton[@name='Log in'])[2]")).click();
+                driver.findElement(By.xpath("(//UIAStaticText[@name='Perfecto Mobile Community'])[1]")).click();
 
-		AppiumDriver _RWD = test.getWebDriver();
+                //logout
+                WebElement w = driver.findElement(By.xpath("//UIAImage[@name='hub-tab']"));
 
-		if (_RWD==null)
-		{
-			Assert.assertTrue(_RWD==null);
-		} 
-		
-		if (platform.equalsIgnoreCase("ios"))
-		{
-			rc = test.execI(_RWD);
+                //String x = w.getAttribute("X");
+                //String y = w.getAttribute("Y");
 
-		}else
-		{
-			rc = test.execA(_RWD);
+                util.swipe("50%,5%","50%,50%",driver);
+                driver.findElement(By.xpath("//UIAButton[@name=\"ic logout\"]")).click();
+                driver.findElement(By.xpath("//UIAButton[@name=\"Yes\"]")).click();
+                reportiumClient.testStop(TestResultFactory.createSuccess());
 
-		}
+            } catch (Exception e) {
+                reportiumClient.testStop(TestResultFactory.createFailure("Exception encountered",e));
+                e.printStackTrace();
+            }
+        }
+    }
 
-		 
+    @SuppressWarnings("Since15")
+    @AfterTest
+    public void afterMethod(){
+        try{
+            driver.manage().deleteAllCookies(); //Removes cookies after test.
+            driver.quit();
+            String reportURL = reportiumClient.getReportUrl();
+            System.out.println(reportURL); //Print URL to console
 
-		try {
+            //TODO: Enable this couple of lines in order to open the browser with the report at the end of the test.
+            //if(Desktop.isDesktopSupported())
+            //  Desktop.getDesktop().browse(new URI(reportURL));
 
-			_RWD.closeApp();
-			if(platform.equalsIgnoreCase("ios"))
-			{
-				_RWD.removeApp("com.bloomfire.enterprise.perfecto");
-			}else
-			{
-				_RWD.removeApp("com.bloomfire.android.perfecto");
-			}
-			_RWD.close();	
-			String repName = "test_comm_"+deviceID;
-			util.downloadReport(_RWD, "pdf",repName);	
-			_rep.addline(deviceID, String.valueOf(rc), util.getReprtName(repName, true));
-
-		} catch (Exception e) {
-		
-		}finally
-		{
-			 try{
-				_RWD.quit();
-
-			}catch(Exception e)
-			{
-				//  driver closed 
-			}
-			if  (!rc)
-			{
-				Assert.fail("Test Ended with error");
-
-			}
-
-		}
-	}
-
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }

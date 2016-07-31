@@ -6,16 +6,16 @@
     <groups>
     </groups>
     <test name="myTest" duration-ms="143098" started-at="2015-12-29T15:08:38Z" finished-at="2015-12-29T15:11:01Z">
-      <class name="test.java.DomExe">
-        <test-method status="PASS" signature="BeforeSuite()[pri:0, instance:test.java.DomExe@6dbd984]" name="BeforeSuite" is-config="true" duration-ms="15" started-at="2015-12-29T17:08:38Z" finished-at="2015-12-29T17:08:38Z">
+      <class name="com.perfectomobile.DomExe">
+        <test-method status="PASS" signature="BeforeSuite()[pri:0, instance:com.perfectomobile.DomExe@6dbd984]" name="BeforeSuite" is-config="true" duration-ms="15" started-at="2015-12-29T17:08:38Z" finished-at="2015-12-29T17:08:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeSuite -->
-        <test-method status="PASS" signature="BeforeSuite()[pri:0, instance:test.java.NativeExe@6b4ceb0d]" name="BeforeSuite" is-config="true" duration-ms="1" started-at="2015-12-29T17:08:38Z" finished-at="2015-12-29T17:08:38Z">
+        <test-method status="PASS" signature="BeforeSuite()[pri:0, instance:com.perfectomobile.NativeExe@6b4ceb0d]" name="BeforeSuite" is-config="true" duration-ms="1" started-at="2015-12-29T17:08:38Z" finished-at="2015-12-29T17:08:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeSuite -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.DomExe@6dbd984]" name="testDevices" duration-ms="24760" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:22Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.DomExe@6dbd984]" name="testDevices" duration-ms="24760" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:22Z">
           <params>
             <param index="0">
               <value>
@@ -43,7 +43,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.DomExe.testDevices(DomExe.java:108)
+	at com.perfectomobile.DomExe.testDevices(DomExe.java:108)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -65,7 +65,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.DomExe@6dbd984]" name="testDevices" duration-ms="27458" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:25Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.DomExe@6dbd984]" name="testDevices" duration-ms="27458" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:25Z">
           <params>
             <param index="0">
               <value>
@@ -93,7 +93,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.DomExe.testDevices(DomExe.java:108)
+	at com.perfectomobile.DomExe.testDevices(DomExe.java:108)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -115,7 +115,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.DomExe@6dbd984]" name="testDevices" duration-ms="687" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:09:58Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.DomExe@6dbd984]" name="testDevices" duration-ms="687" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:09:58Z">
           <params>
             <param index="0">
               <value>
@@ -143,7 +143,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.DomExe.testDevices(DomExe.java:108)
+	at com.perfectomobile.DomExe.testDevices(DomExe.java:108)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -165,7 +165,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.DomExe@6dbd984]" name="testDevices" duration-ms="63979" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:11:01Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.DomExe@6dbd984]" name="testDevices" duration-ms="63979" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:11:01Z">
           <params>
             <param index="0">
               <value>
@@ -193,7 +193,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.DomExe.testDevices(DomExe.java:108)
+	at com.perfectomobile.DomExe.testDevices(DomExe.java:108)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -215,7 +215,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.DomExe@6dbd984]" name="testDevices" duration-ms="23146" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:20Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.DomExe@6dbd984]" name="testDevices" duration-ms="23146" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:20Z">
           <params>
             <param index="0">
               <value>
@@ -243,7 +243,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.DomExe.testDevices(DomExe.java:108)
+	at com.perfectomobile.DomExe.testDevices(DomExe.java:108)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -265,7 +265,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.DomExe@6dbd984]" name="testDevices" duration-ms="36590" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:34Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.DomExe@6dbd984]" name="testDevices" duration-ms="36590" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:34Z">
           <params>
             <param index="0">
               <value>
@@ -293,7 +293,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.DomExe.testDevices(DomExe.java:108)
+	at com.perfectomobile.DomExe.testDevices(DomExe.java:108)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -315,7 +315,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.DomExe@6dbd984]" name="testDevices" duration-ms="34277" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:31Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.DomExe@6dbd984]" name="testDevices" duration-ms="34277" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:31Z">
           <params>
             <param index="0">
               <value>
@@ -343,7 +343,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.DomExe.testDevices(DomExe.java:108)
+	at com.perfectomobile.DomExe.testDevices(DomExe.java:108)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -365,7 +365,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.DomExe@6dbd984]" name="testDevices" duration-ms="32218" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:29Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.DomExe@6dbd984]" name="testDevices" duration-ms="32218" started-at="2015-12-29T17:09:57Z" data-provider="Devices" finished-at="2015-12-29T17:10:29Z">
           <params>
             <param index="0">
               <value>
@@ -393,7 +393,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.DomExe.testDevices(DomExe.java:108)
+	at com.perfectomobile.DomExe.testDevices(DomExe.java:108)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -415,23 +415,23 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="PASS" signature="AfterSuite()[pri:0, instance:test.java.DomExe@6dbd984]" name="AfterSuite" is-config="true" duration-ms="0" started-at="2015-12-29T17:11:01Z" finished-at="2015-12-29T17:11:01Z">
+        <test-method status="PASS" signature="AfterSuite()[pri:0, instance:com.perfectomobile.DomExe@6dbd984]" name="AfterSuite" is-config="true" duration-ms="0" started-at="2015-12-29T17:11:01Z" finished-at="2015-12-29T17:11:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AfterSuite -->
-        <test-method status="PASS" signature="AfterSuite()[pri:0, instance:test.java.NativeExe@6b4ceb0d]" name="AfterSuite" is-config="true" duration-ms="1" started-at="2015-12-29T17:11:01Z" finished-at="2015-12-29T17:11:01Z">
+        <test-method status="PASS" signature="AfterSuite()[pri:0, instance:com.perfectomobile.NativeExe@6b4ceb0d]" name="AfterSuite" is-config="true" duration-ms="1" started-at="2015-12-29T17:11:01Z" finished-at="2015-12-29T17:11:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AfterSuite -->
-      </class> <!-- test.java.DomExe -->
-      <class name="test.java.BuildDeviesList">
-        <test-method status="PASS" signature="deviceList()[pri:0, instance:test.java.BuildDeviesList@4ba56ca0]" name="deviceList" duration-ms="2193" started-at="2015-12-29T17:08:38Z" finished-at="2015-12-29T17:08:40Z">
+      </class> <!-- com.perfectomobile.DomExe -->
+      <class name="com.perfectomobile.BuildDevicesList">
+        <test-method status="PASS" signature="deviceList()[pri:0, instance:com.perfectomobile.BuildDevicesList@4ba56ca0]" name="deviceList" duration-ms="2193" started-at="2015-12-29T17:08:38Z" finished-at="2015-12-29T17:08:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deviceList -->
-      </class> <!-- test.java.BuildDeviesList -->
-      <class name="test.java.NativeExe">
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="63072" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:43Z">
+      </class> <!-- com.perfectomobile.BuildDevicesList -->
+      <class name="com.perfectomobile.NativeExe">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="63072" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:43Z">
           <params>
             <param index="0">
               <value>
@@ -464,7 +464,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.NativeExe.testDevices(NativeExe.java:110)
+	at com.perfectomobile.NativeExe.testDevices(NativeExe.java:110)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -486,7 +486,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="PASS" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="62727" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:43Z">
+        <test-method status="PASS" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="62727" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:43Z">
           <params>
             <param index="0">
               <value>
@@ -515,7 +515,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="72079" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:52Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="72079" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:52Z">
           <params>
             <param index="0">
               <value>
@@ -548,7 +548,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.NativeExe.testDevices(NativeExe.java:110)
+	at com.perfectomobile.NativeExe.testDevices(NativeExe.java:110)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -570,7 +570,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="1742" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:08:42Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="1742" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:08:42Z">
           <params>
             <param index="0">
               <value>
@@ -603,7 +603,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.NativeExe.testDevices(NativeExe.java:110)
+	at com.perfectomobile.NativeExe.testDevices(NativeExe.java:110)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -625,7 +625,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="64074" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:44Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="64074" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:44Z">
           <params>
             <param index="0">
               <value>
@@ -658,7 +658,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.NativeExe.testDevices(NativeExe.java:110)
+	at com.perfectomobile.NativeExe.testDevices(NativeExe.java:110)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -680,7 +680,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="76875" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:57Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="76875" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:57Z">
           <params>
             <param index="0">
               <value>
@@ -713,7 +713,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.NativeExe.testDevices(NativeExe.java:110)
+	at com.perfectomobile.NativeExe.testDevices(NativeExe.java:110)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -735,7 +735,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="63317" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:44Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="63317" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:44Z">
           <params>
             <param index="0">
               <value>
@@ -768,7 +768,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.NativeExe.testDevices(NativeExe.java:110)
+	at com.perfectomobile.NativeExe.testDevices(NativeExe.java:110)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -790,7 +790,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:test.java.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="44796" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:25Z">
+        <test-method status="FAIL" signature="testDevices(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.perfectomobile.NativeExe@6b4ceb0d]" name="testDevices" duration-ms="44796" started-at="2015-12-29T17:08:40Z" data-provider="Devices" finished-at="2015-12-29T17:09:25Z">
           <params>
             <param index="0">
               <value>
@@ -823,7 +823,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Test Ended with error
 	at org.testng.Assert.fail(Assert.java:94)
-	at test.java.NativeExe.testDevices(NativeExe.java:110)
+	at com.perfectomobile.NativeExe.testDevices(NativeExe.java:110)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -845,7 +845,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDevices -->
-      </class> <!-- test.java.NativeExe -->
+      </class> <!-- com.perfectomobile.NativeExe -->
     </test> <!-- myTest -->
   </suite> <!-- testList -->
 </testng-results>
