@@ -16,6 +16,13 @@
 		<reportng.version>1.1.4</reportng.version>
 	
 	</properties>
+	<repositories>
+        <repository>
+            <id>perfectomobile</id>
+            <name>Perfecto mobile</name>
+            <url>http://repository-perfectomobile.forge.cloudbees.com/public</url>
+        </repository>
+    </repositories>
 
 	<build>
 
@@ -57,6 +64,12 @@
 		</plugins>
 	</build>
 	<dependencies>
+        <!-- Reportium SDK -->
+        <dependency>
+            <groupId>com.perfecto.reporting-sdk</groupId>
+            <artifactId>reportium-java</artifactId>
+            <version>0.0.24</version>
+        </dependency>
 		<dependency>
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>

@@ -14,6 +14,13 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import com.perfecto.reportium.client.ReportiumClient;
+import com.perfecto.reportium.client.ReportiumClientFactory;
+import com.perfecto.reportium.model.PerfectoExecutionContext;
+import com.perfecto.reportium.model.Project;
+import com.perfecto.reportium.test.TestContext;
+import com.perfecto.reportium.test.result.TestResultFactory;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -23,10 +30,22 @@ import org.w3c.dom.Node;
 public class BuildDeviesList {
 protected static String host = System.getProperty("np.testHost", "branchtest.perfectomobile.com");
 
-	@Test 
+	protected ReportiumClient reportiumClient;
+
+	@BeforeClass
+    public void initReportium(){
+        PerfectoExecutionContext perfectoExecutionContext = new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
+                .withProject(new Project("Sample Selenium-Reportium project" , "1.0")) //Optional
+                .withContextTags("Regression" , "SampleTag1" , "SampleTag2") //Optional
+                .build();
+        reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(perfectoExecutionContext);
+    }
+
+    @Test
 //	public static void main(String[] args) throws IOException {
 	public void deviceList () throws IOException {
-		List<Device> listDevices = new ArrayList<Device>();
+		reportiumClient.testStart("deviceList",new TestContext("Check devices"));
+	    List<Device> listDevices = new ArrayList<Device>();
 		System.out.println(host);
 		//String devList = getData();
 		String iosApp = "com.bloomfire.enterprise.perfecto";
@@ -36,15 +55,15 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 		String ipaLocation = "PUBLIC:PMcommunity\\\\perfecto-enterprise-2.11(20151117.1).ipa";
  		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
+
 		try {
 			dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(getData());
 
 			NodeList handsets = doc.getElementsByTagName("handset");
 
-			
-			
 			for (int temp = 0; temp < handsets.getLength(); temp++) {
+
 
 				Node handset = handsets.item(temp);
 
@@ -70,6 +89,7 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 					Device d = new Device("ios", iosApp, id, null, ipaLocation);
 					System.out.println(d);
 					listDevices.add(d);
+                    reportiumClient.testStep("Found device " + d);
 //					System.out.println("{\"ios\",\""+iosApp+"\",\""+id+"\",null,\""+ipaLocation+"\"},");
 
 				}
@@ -77,8 +97,8 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 				{
 					Device d = new Device("Android", AndroidApp, id, null, apkLocation);
 					System.out.println(d);
+                    reportiumClient.testStep("Found device " + d);
 					listDevices.add(d);
-
 				}
 				else
 				{
@@ -90,10 +110,12 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 
 		} catch (Exception e) {
 			System.out.println("can't parse XML ");
-			e.printStackTrace();
+			reportiumClient.testStop(TestResultFactory.createFailure("Failure",e));
+            e.printStackTrace();
 		}
 		util.writeToXml(listDevices);
 		System.out.println(host);
+        reportiumClient.testStop(TestResultFactory.createSuccess());
 		
 	}
 	
