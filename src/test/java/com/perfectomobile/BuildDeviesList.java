@@ -40,13 +40,12 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
                 .withContextTags("Regression" , "SampleTag1" , "SampleTag2") //Optional
                 .build();
         reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(perfectoExecutionContext);
-        reportiumClient.testStart("deviceList",new TestContext("Check devices"));
     }
 
     @Test
 //	public static void main(String[] args) throws IOException {
 	public void deviceList () throws IOException {
-		reportiumClient.testStart("deviceList",new TestContext("Check devices"));
+//		reportiumClient.testStart("deviceList",new TestContext("Check devices"));
 	    List<Device> listDevices = new ArrayList<Device>();
 		System.out.println(host);
 		//String devList = getData();
@@ -91,7 +90,7 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 					Device d = new Device("ios", iosApp, id, null, ipaLocation);
 					System.out.println(d);
 					listDevices.add(d);
-                    reportiumClient.testStep("Found device " + d);
+//                    reportiumClient.testStep("Found device " + d);
 //					System.out.println("{\"ios\",\""+iosApp+"\",\""+id+"\",null,\""+ipaLocation+"\"},");
 
 				}
@@ -99,7 +98,7 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 				{
 					Device d = new Device("Android", AndroidApp, id, null, apkLocation);
 					System.out.println(d);
-                    reportiumClient.testStep("Found device " + d);
+//                    reportiumClient.testStep("Found device " + d);
 					listDevices.add(d);
 				}
 				else
@@ -112,12 +111,12 @@ protected static String host = System.getProperty("np.testHost", "branchtest.per
 
 		} catch (Exception e) {
 			System.out.println("can't parse XML ");
-			reportiumClient.testStop(TestResultFactory.createFailure("Failure",e));
+//			reportiumClient.testStop(TestResultFactory.createFailure("Failure",e));
             e.printStackTrace();
 		}
 		util.writeToXml(listDevices);
 		System.out.println(host);
-        reportiumClient.testStop(TestResultFactory.createSuccess());
+//        reportiumClient.testStop(TestResultFactory.createSuccess());
 		
 	}
 	
