@@ -1,25 +1,23 @@
-package test.java;
-
-
-import io.appium.java_client.AppiumDriver;
+package com.perfectomobile;
 
 import java.io.IOException;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import org.testng.annotations.Test;
+
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 
+public class DomExe {
 
-public class NativeExe {
 
-	communityTest test= null;
+	webCommunity test= null;
 	HTMLReporter _rep ;
 	@BeforeSuite
 	public void BeforeSuite() {
@@ -31,7 +29,7 @@ public class NativeExe {
         String today = formatter.format(date);
         System.out.println("Today : " + today);
 		
-		String fileName = "CommStats_"+ today +".html";
+		String fileName = "WebCommStats_"+ today +".html";
 		_rep = new HTMLReporter(fileName, "/community/", "Perfecto");
 
 		// add one reporter in the before test will be used by all the tests
@@ -53,21 +51,21 @@ public class NativeExe {
 
 	@DataProvider(name = "Devices" , parallel = true)
 	public Object[][] testSumInput() throws IOException {
-			return util.readFromXml();
+			return util.readFromXmlForWeb();
 	}
 
 
 	//@Parameters({ "deviceID" })
 	@Test (dataProvider="Devices" )
 
-	public void testDevices(String platform,String app,String deviceID,String persona,String applocation) {
+	public void testDevices(String platform,String deviceID,String persona, String URL) {
 		boolean rc =false;
 
-		test= new communityTest(_rep,deviceID,app,platform,persona,applocation);
+		test= new webCommunity(_rep,deviceID,platform,URL);
 
 
 
-		AppiumDriver _RWD = test.getWebDriver();
+		RemoteWebDriver _RWD = test.getWebDriver();
 
 		if (_RWD==null)
 		{
@@ -88,18 +86,11 @@ public class NativeExe {
 
 		try {
 
-			_RWD.closeApp();
-			if(platform.equalsIgnoreCase("ios"))
-			{
-				_RWD.removeApp("com.bloomfire.enterprise.perfecto");
-			}else
-			{
-				_RWD.removeApp("com.bloomfire.android.perfecto");
-			}
+			
 			_RWD.close();	
 			String repName = "test_comm_"+deviceID;
 			util.downloadReport(_RWD, "pdf",repName);	
-			_rep.addline(deviceID, String.valueOf(rc), util.getReprtName(repName, true));
+			_rep.addline(deviceID, String.valueOf(rc)  ,	 	util.getReprtName(repName, true));
 
 		} catch (Exception e) {
 		
@@ -121,4 +112,5 @@ public class NativeExe {
 		}
 	}
 
+	
 }

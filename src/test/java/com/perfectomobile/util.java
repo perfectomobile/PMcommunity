@@ -1,4 +1,4 @@
-package test.java;
+package com.perfectomobile;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
