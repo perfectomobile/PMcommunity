@@ -47,9 +47,8 @@ public class NativeExe {
 
 
 
-    @Test(invocationCount = 4, successPercentage = 25)
+    @Test
 	public void testDevices() throws Exception {
-
         if (driver.getCapabilities().getCapability("platformName").toString().equalsIgnoreCase("android")){
             reportiumClient.testStart("Android-Community",new TestContext("Native EXE"));
             try {
@@ -128,8 +127,8 @@ public class NativeExe {
 
     @AfterTest
     public void afterTest(){
-//        System.out.println("Resetting retry counter between tests");
-//        Retry.resetRetries();
+        System.out.println("Resetting retry counter between tests");
+        Retry.resetRetries();
     }
 
     //constructing driver before each test, and releasing it after each test

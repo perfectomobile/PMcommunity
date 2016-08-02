@@ -12,12 +12,15 @@ public class Retry implements IRetryAnalyzer {
     }
 
     public boolean retry(ITestResult result) {
-
-        if (retryCount < maxRetryCount) {
-            retryCount++;
-            System.out.println("Retry #" + retryCount + " for test: " + result.getMethod().getMethodName() + ", on thread: " + Thread.currentThread().getName());
-            return true;
+        if (result.isSuccess())
+            return false;
+        else{
+            if (retryCount < maxRetryCount) {
+                retryCount++;
+                System.out.println("Retry #" + retryCount + " for test: " + result.getMethod().getMethodName() + ", on thread: " + Thread.currentThread().getName());
+                return true;
+            }
+            return false;
         }
-        return false;
     }
 }

@@ -3,9 +3,9 @@
 <suite name="testList" thread-count="5">
 
     <!--retry the test for up to 5 times if failed-->
-    <!--<listeners>-->
-        <!--<listener class-name="com.perfectomobile.infra.RetryListener"/>-->
-    <!--</listeners>-->
+    <listeners>
+        <listener class-name="com.perfectomobile.infra.RetryListener"/>
+    </listeners>
 
     <test name="Test Android">
         <parameter name="platformName" value="Android" />
