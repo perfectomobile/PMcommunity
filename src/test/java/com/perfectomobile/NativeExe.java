@@ -7,6 +7,7 @@ import com.perfecto.reportium.model.PerfectoExecutionContext;
 import com.perfecto.reportium.model.Project;
 import com.perfecto.reportium.test.TestContext;
 import com.perfecto.reportium.test.result.TestResultFactory;
+import com.perfectomobile.infra.Retry;
 import io.appium.java_client.AppiumDriver;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import org.apache.xpath.SourceTree;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
@@ -43,49 +45,15 @@ public class NativeExe {
     private static AppiumDriver driver;
     private ReportiumClient reportiumClient;
 
-    @Parameters({"platformName" , "model" , "browserName" , "location", "appLocation","appPackage","bundleId"})
-    @BeforeTest
-    public void beforeMethod(String platformName, String model, String browserName, String location,String appLocation,String appPackage,String bundleId) throws MalformedURLException {
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("user" , PERFECTO_USER);
-        capabilities.setCapability("password" , PERFECTO_PASSWORD);
-        capabilities.setCapability("platformName" , platformName);
-        capabilities.setCapability("model" , model);
-        capabilities.setCapability("browserName" , browserName);
-        capabilities.setCapability("location" , location);
-
-        if (platformName.equalsIgnoreCase("android")){
-            capabilities.setCapability("autoLaunch",true);
-            capabilities.setCapability("appPackage",appPackage);
-            capabilities.setCapability("fullReset",true);
-            capabilities.setCapability("app",appLocation);
-            driver = new AndroidDriver(new URL("https://" + PERFECTO_HOST + "/nexperience/perfectomobile/wd/hub"), capabilities);
-        } else{
-            capabilities.setCapability("autoLaunch",true);
-            capabilities.setCapability("fullReset",true);
-            capabilities.setCapability("bundleId", bundleId);
-            capabilities.setCapability("app",appLocation);
-            driver = new IOSDriver(new URL("https://" + PERFECTO_HOST + "/nexperience/perfectomobile/wd/hub"), capabilities);
-        }
-
-        driver.manage().timeouts().implicitlyWait(15 , TimeUnit.SECONDS);
-
-        //Create Reportium client.
-        reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(
-                new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
-                        .withProject(new Project("Sample Selenium-Reportium" , "1.0"))
-                        .withContextTags("Regression") //Optional
-                        .withWebDriver(driver) //Optional
-                        .build());
-    }
 
     @Test
-	public void testDevices() throws MalformedURLException {
+	public void testDevices() throws Exception {
 
         if (driver.getCapabilities().getCapability("platformName").toString().equalsIgnoreCase("android")){
             reportiumClient.testStart("Android-Community",new TestContext("Native EXE"));
             try {
+
                 driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
                 driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
@@ -115,7 +83,7 @@ public class NativeExe {
 
             } catch (Exception e) {
                 reportiumClient.testStop(TestResultFactory.createFailure("Exception encountered",e));
-                throw e;
+                Assert.fail(e.getMessage());
             }
         } else{
             reportiumClient.testStart("IOS-Community",new TestContext("Native EXE"));
@@ -155,16 +123,57 @@ public class NativeExe {
 
             } catch (Exception e) {
                 reportiumClient.testStop(TestResultFactory.createFailure("Exception encountered",e));
-                throw e;
+                Assert.fail(e.getMessage());
             }
         }
     }
 
-    @SuppressWarnings("Since15")
     @AfterTest
+    public void afterTest(){
+        System.out.println("Resetting retry counter between tests");
+        Retry.resetRetries();
+    }
+
+    //constructing driver before each test, and releasing it after each test
+    @Parameters({"platformName" , "model" , "browserName" , "location", "appLocation","appPackage","bundleId"})
+    @BeforeMethod
+    public void beforeMethod(String platformName, String model, String browserName, String location,String appLocation,String appPackage,String bundleId) throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("user" , PERFECTO_USER);
+        capabilities.setCapability("password" , PERFECTO_PASSWORD);
+        capabilities.setCapability("platformName" , platformName);
+        capabilities.setCapability("model" , model);
+        capabilities.setCapability("browserName" , browserName);
+        capabilities.setCapability("location" , location);
+
+        if (platformName.equalsIgnoreCase("android")){
+            capabilities.setCapability("autoLaunch",true);
+            capabilities.setCapability("appPackage",appPackage);
+            capabilities.setCapability("fullReset",true);
+            capabilities.setCapability("app",appLocation);
+            driver = new AndroidDriver(new URL("https://" + PERFECTO_HOST + "/nexperience/perfectomobile/wd/hub"), capabilities);
+        } else{
+            capabilities.setCapability("autoLaunch",true);
+            capabilities.setCapability("fullReset",true);
+            capabilities.setCapability("bundleId", bundleId);
+            capabilities.setCapability("app",appLocation);
+            driver = new IOSDriver(new URL("https://" + PERFECTO_HOST + "/nexperience/perfectomobile/wd/hub"), capabilities);
+        }
+
+        driver.manage().timeouts().implicitlyWait(15 , TimeUnit.SECONDS);
+
+        //Create Reportium client.
+        reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(
+                new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
+                        .withProject(new Project("Sample Selenium-Reportium" , "1.0"))
+                        .withContextTags("Regression") //Optional
+                        .withWebDriver(driver) //Optional
+                        .build());
+    }
+
+    @AfterMethod
     public void afterMethod(){
         try{
-//            driver.manage().deleteAllCookies(); //Removes cookies after test.
             driver.quit();
             String reportURL = reportiumClient.getReportUrl();
             System.out.println(reportURL); //Print URL to console

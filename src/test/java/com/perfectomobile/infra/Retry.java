@@ -4,9 +4,15 @@ import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
 public class Retry implements IRetryAnalyzer {
-    private int retryCount = 0;
+    private static volatile int retryCount = 0;
+    private static final int maxRetryCount = 4;
+
+    public static synchronized void resetRetries(){
+        retryCount = 0;
+    }
+
     public boolean retry(ITestResult result) {
-        int maxRetryCount = 5;
+
         if (retryCount < maxRetryCount) {
             retryCount++;
             System.out.println("Retry #" + retryCount + " for test: " + result.getMethod().getMethodName() + ", on thread: " + Thread.currentThread().getName());
