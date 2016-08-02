@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="testList" thread-count="4">
-   <!--<test name="myTest">-->
-     <!--<classes>-->
-            <!--&lt;!&ndash;<class name="com.perfectomobile.BuildDevicesList"/>&ndash;&gt;-->
-            <!--<class name="com.perfectomobile.NativeExe"/>-->
-       <!--&lt;!&ndash;  <class name="com.perfectomobile.DomExe"/>&ndash;&gt;-->
-      <!--</classes>-->
-    <!--</test>-->
+
+    <!--retry the test for up to 5 times if failed-->
+    <listeners>
+        <listener class-name="com.perfectomobile.infra.RetryListener"/>
+    </listeners>
 
     <test name="Test Android">
         <parameter name="platformName" value="Android" />
         <parameter name="model" value= "" />
         <parameter name="browserName" value="mobileOS" />
         <parameter name="location" value="" />
+        <parameter name="appLocation" value="PUBLIC:PMcommunity\Bloomfire-perfecto-release.apk" />
+        <parameter name="appPackage" value="com.bloomfire.android.perfecto" />
+        <parameter name="bundleId" value="" />
         <classes>
             <class name="com.perfectomobile.NativeExe"/>
         </classes>
@@ -24,6 +25,9 @@
         <parameter name="model" value= "" />
         <parameter name="browserName" value="mobileOS" />
         <parameter name="location" value="" />
+        <parameter name="appPackage" value="" />
+        <parameter name="bundleId" value="com.bloomfire.enterprise.perfecto" />
+        <parameter name="appLocation" value="PUBLIC:PMcommunity\perfecto-enterprise-2.11(20151117.1).ipa" />
         <classes>
             <class name="com.perfectomobile.NativeExe"/>
         </classes>

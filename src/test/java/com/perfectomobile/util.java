@@ -109,8 +109,6 @@ public class util {
 		AppiumDriver webdriver= null;
 
 		DesiredCapabilities capabilities = new DesiredCapabilities("", "", Platform.ANY);
-		
-
 
 		// get local Appium webDriver
 		if (platform=="local")

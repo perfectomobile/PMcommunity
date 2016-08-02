@@ -30,6 +30,12 @@ package com.perfectomobile;
 			_wd = util.getAppiumDriver(deviceID,appName,platform,persona, appLocation,_rep);
  		}
 
+		public communityTest(String deviceID,String appName,String platform,String persona,String appLocation){
+			_wd = util.getAppiumDriver(deviceID,appName,platform,persona, appLocation,_rep);
+		}
+
+
+
 		public AppiumDriver getWebDriver() {
 			return _wd;
 		}
