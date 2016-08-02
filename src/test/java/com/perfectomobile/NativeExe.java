@@ -47,7 +47,7 @@ public class NativeExe {
 
 
 
-    @Test(invocationCount = 2, successPercentage = 50)
+    @Test(invocationCount = 4, successPercentage = 25)
 	public void testDevices() throws Exception {
 
         if (driver.getCapabilities().getCapability("platformName").toString().equalsIgnoreCase("android")){
@@ -58,8 +58,7 @@ public class NativeExe {
                 driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
                 reportiumClient.testStep("Entering login");
-                //TODO - change back to 1
-                driver.findElement(By.xpath("//android.widget.EditText[12]")).sendKeys("uzie@perfectomobile.com");
+                driver.findElement(By.xpath("//android.widget.EditText[1]")).sendKeys("uzie@perfectomobile.com");
                 reportiumClient.testStep("Entering password");
                 driver.findElement(By.xpath("//android.widget.EditText[2]")).sendKeys("Perfecto1");
                 reportiumClient.testStep("Clicking login button");
@@ -96,8 +95,7 @@ public class NativeExe {
                 }
 
                 reportiumClient.testStep("Clearing login field");
-                //TODO - change back to 2
-                driver.findElement(By.xpath("(//UIATextField)[22]")).clear();
+                driver.findElement(By.xpath("(//UIATextField)[2]")).clear();
 
                 reportiumClient.testStep("Entering login");
                 driver.findElement(By.xpath("(//UIATextField)[2]")).sendKeys("uzie@perfectomobile.com");
