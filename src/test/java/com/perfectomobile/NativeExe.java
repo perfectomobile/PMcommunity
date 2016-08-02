@@ -47,7 +47,7 @@ public class NativeExe {
 
 
 
-    @Test
+    @Test(invocationCount = 2, successPercentage = 50)
 	public void testDevices() throws Exception {
 
         if (driver.getCapabilities().getCapability("platformName").toString().equalsIgnoreCase("android")){
@@ -57,10 +57,9 @@ public class NativeExe {
                 driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
                 driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
-                reportiumClient.testStep("Opening application");
-
                 reportiumClient.testStep("Entering login");
-                driver.findElement(By.xpath("//android.widget.EditText[1]")).sendKeys("uzie@perfectomobile.com");
+                //TODO - change back to 1
+                driver.findElement(By.xpath("//android.widget.EditText[12]")).sendKeys("uzie@perfectomobile.com");
                 reportiumClient.testStep("Entering password");
                 driver.findElement(By.xpath("//android.widget.EditText[2]")).sendKeys("Perfecto1");
                 reportiumClient.testStep("Clicking login button");
@@ -97,7 +96,8 @@ public class NativeExe {
                 }
 
                 reportiumClient.testStep("Clearing login field");
-                driver.findElement(By.xpath("(//UIATextField)[2]")).clear();
+                //TODO - change back to 2
+                driver.findElement(By.xpath("(//UIATextField)[22]")).clear();
 
                 reportiumClient.testStep("Entering login");
                 driver.findElement(By.xpath("(//UIATextField)[2]")).sendKeys("uzie@perfectomobile.com");
@@ -130,8 +130,8 @@ public class NativeExe {
 
     @AfterTest
     public void afterTest(){
-        System.out.println("Resetting retry counter between tests");
-        Retry.resetRetries();
+//        System.out.println("Resetting retry counter between tests");
+//        Retry.resetRetries();
     }
 
     //constructing driver before each test, and releasing it after each test
