@@ -95,7 +95,7 @@ public class NativeExe {
                 Assert.fail(e.getMessage());
             }
         } else{
-            reportiumClient.testStart("IOS-Community " + Retry.getRetryCount(),new TestContext("Native EXE"));
+            reportiumClient.testStart("IOS-Community, retry number" + Retry.getRetryCount(),new TestContext("Native EXE"));
             logger.info("Starting IOS test");
             try {
                 driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
