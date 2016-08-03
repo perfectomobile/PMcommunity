@@ -162,6 +162,7 @@ public class NativeExe {
         capabilities.setCapability("platformName" , platformName);
         capabilities.setCapability("browserName" , browserName);
         capabilities.setCapability("location" , location);
+        capabilities.setCapability("operabilityRatingScore", 100);
 
         logger.info("Instantiating driver...");
         if (platformName.equalsIgnoreCase("android")){
