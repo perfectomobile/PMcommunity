@@ -197,7 +197,7 @@ public class NativeExe {
             driver.quit();
             logger.info("...done");
             String reportURL = reportiumClient.getReportUrl();
-            logger.info("Report URL - " + reportURL);
+            logger.info("Report URL for retry number " + Retry.getRetryCount() + " - " + reportURL);
             //System.out.println(reportURL); //Print URL to console
 
         }catch(Exception ex){
