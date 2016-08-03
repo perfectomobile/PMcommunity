@@ -11,6 +11,10 @@ public class Retry implements IRetryAnalyzer {
         retryCount = 0;
     }
 
+    public static  synchronized int getRetryCount(){
+        return retryCount;
+    }
+
     public boolean retry(ITestResult result) {
         if (result.isSuccess())
             return false;

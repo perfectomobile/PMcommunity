@@ -53,7 +53,7 @@ public class NativeExe {
     @Test
 	public void testDevices() throws Exception {
         if (driver.getCapabilities().getCapability("platformName").toString().equalsIgnoreCase("android")){
-            reportiumClient.testStart("Android-Community",new TestContext("Native EXE"));
+            reportiumClient.testStart("Android-Community,retry number " + Retry.getRetryCount() ,new TestContext("Native EXE"));
             try {
 
                 logger.info("Starting android test");
@@ -94,7 +94,7 @@ public class NativeExe {
                 Assert.fail(e.getMessage());
             }
         } else{
-            reportiumClient.testStart("IOS-Community",new TestContext("Native EXE"));
+            reportiumClient.testStart("IOS-Community " + Retry.getRetryCount(),new TestContext("Native EXE"));
             logger.info("Starting IOS test");
             try {
                 driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
@@ -150,7 +150,7 @@ public class NativeExe {
     @Parameters({"platformName" , "model" , "browserName" , "location", "appLocation","appPackage","bundleId"})
     @BeforeMethod
     public void beforeMethod(String platformName, String model, String browserName, String location,String appLocation,String appPackage,String bundleId) throws MalformedURLException {
-        logger.info("Running test on " + platformName + " platform");
+        logger.info("Running test on " + platformName + " platform, retry number " + Retry.getRetryCount());
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("user" , PERFECTO_USER);
         capabilities.setCapability("password" , PERFECTO_PASSWORD);
