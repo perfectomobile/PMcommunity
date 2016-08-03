@@ -91,6 +91,7 @@ public class NativeExe {
 
             } catch (Exception e) {
                 reportiumClient.testStop(TestResultFactory.createFailure("Exception encountered",e));
+                logger.error("Exception encountered",e);
                 Assert.fail(e.getMessage());
             }
         } else{
@@ -135,6 +136,7 @@ public class NativeExe {
 
             } catch (Exception e) {
                 reportiumClient.testStop(TestResultFactory.createFailure("Exception encountered",e));
+                logger.error("Exception encountered",e);
                 Assert.fail("Error running the test " + e.getMessage());
             }
         }
