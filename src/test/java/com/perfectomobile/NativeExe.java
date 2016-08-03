@@ -24,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.apache.xpath.SourceTree;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
@@ -45,6 +47,7 @@ public class NativeExe {
     private static AppiumDriver driver;
     private ReportiumClient reportiumClient;
 
+    private static Logger logger = LogManager.getLogger("NativeExe");
 
 
     @Test
@@ -53,23 +56,31 @@ public class NativeExe {
             reportiumClient.testStart("Android-Community",new TestContext("Native EXE"));
             try {
 
+                logger.info("Starting android test");
                 driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
                 driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
+                logger.info("Logging in");
                 reportiumClient.testStep("Entering login");
                 driver.findElement(By.xpath("//android.widget.EditText[1]")).sendKeys("uzie@perfectomobile.com");
                 reportiumClient.testStep("Entering password");
                 driver.findElement(By.xpath("//android.widget.EditText[2]")).sendKeys("Perfecto1");
                 reportiumClient.testStep("Clicking login button");
                 driver.findElement(By.xpath("//android.widget.Button[@text='Log In']")).click();
+                logger.info("Clearing filters");
                 reportiumClient.testStep("Clearing filters");
                 driver.findElement(By.xpath("//*[@resource-id='com.bloomfire.android.perfecto:id/home_screen_filter']")).click();
                 driver.findElement(By.xpath("//*[@text='Clear Filters']")).click();
                 driver.findElement(By.xpath("//*[@text='filter by category']")).click();
-                driver.findElement(By.xpath("(//android.widget.CheckBox)[2]")).click();
+
                 //checks the second check box
+                logger.info("Setting checkboxes");
                 reportiumClient.testStep("Checking the second checkbox");
+                driver.findElement(By.xpath("(//android.widget.CheckBox)[2]")).click();
+
+                reportiumClient.testStep("Checking the 4th checkbox");
                 driver.findElement(By.xpath("(//android.widget.CheckBox)[4]")).click();
+                logger.info("Clicking Done");
                 reportiumClient.testStep("Clicking Done for the first time");
                 driver.findElement(By.xpath("(//*[@text='Done'])[1]")).click();
                 reportiumClient.testStep("Sleeping");
@@ -84,6 +95,7 @@ public class NativeExe {
             }
         } else{
             reportiumClient.testStart("IOS-Community",new TestContext("Native EXE"));
+            logger.info("Starting IOS test");
             try {
                 driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
                 try {
@@ -93,6 +105,7 @@ public class NativeExe {
                     // TODO: handle exception
                 }
 
+                logger.info("Logging in");
                 reportiumClient.testStep("Clearing login field");
                 driver.findElement(By.xpath("(//UIATextField)[2]")).clear();
 
@@ -113,21 +126,23 @@ public class NativeExe {
 
                 util.swipe("50%,5%","50%,50%",driver);
                 reportiumClient.testStep("Logging out");
+                logger.info("Logging out");
                 driver.findElement(By.xpath("//UIAButton[@name=\"ic logout\"]")).click();
                 reportiumClient.testStep("Clicking Yes button (confirming logout)");
+                logger.info("Clicking Yes button (confirming logout)");
                 driver.findElement(By.xpath("//UIAButton[@name=\"Yes\"]")).click();
                 reportiumClient.testStop(TestResultFactory.createSuccess());
 
             } catch (Exception e) {
                 reportiumClient.testStop(TestResultFactory.createFailure("Exception encountered",e));
-                Assert.fail(e.getMessage());
+                Assert.fail("Error running the test " + e.getMessage());
             }
         }
     }
 
     @AfterTest
     public void afterTest(){
-        System.out.println("Resetting retry counter between tests");
+        logger.info("Resetting retry counter between tests");
         Retry.resetRetries();
     }
 
@@ -135,6 +150,7 @@ public class NativeExe {
     @Parameters({"platformName" , "model" , "browserName" , "location", "appLocation","appPackage","bundleId"})
     @BeforeMethod
     public void beforeMethod(String platformName, String model, String browserName, String location,String appLocation,String appPackage,String bundleId) throws MalformedURLException {
+        logger.info("Running test on " + platformName + " platform");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("user" , PERFECTO_USER);
         capabilities.setCapability("password" , PERFECTO_PASSWORD);
@@ -143,6 +159,7 @@ public class NativeExe {
         capabilities.setCapability("browserName" , browserName);
         capabilities.setCapability("location" , location);
 
+        logger.info("Instantiating driver...");
         if (platformName.equalsIgnoreCase("android")){
             capabilities.setCapability("autoLaunch",true);
             capabilities.setCapability("appPackage",appPackage);
@@ -156,28 +173,32 @@ public class NativeExe {
             capabilities.setCapability("app",appLocation);
             driver = new IOSDriver(new URL("https://" + PERFECTO_HOST + "/nexperience/perfectomobile/wd/hub"), capabilities);
         }
+        logger.info("...done");
+        logger.info("Running test on device " + driver.getCapabilities().getCapability("deviceName").toString());
 
         driver.manage().timeouts().implicitlyWait(15 , TimeUnit.SECONDS);
 
+
         //Create Reportium client.
+        logger.info("Instantiating reportium client...");
         reportiumClient = new ReportiumClientFactory().createPerfectoReportiumClient(
                 new PerfectoExecutionContext.PerfectoExecutionContextBuilder()
                         .withProject(new Project("Sample Selenium-Reportium" , "1.0"))
                         .withContextTags("Regression") //Optional
                         .withWebDriver(driver) //Optional
                         .build());
+        logger.info("...done");
     }
 
     @AfterMethod
     public void afterMethod(){
         try{
+            logger.info("Closing driver...");
             driver.quit();
+            logger.info("...done");
             String reportURL = reportiumClient.getReportUrl();
-            System.out.println(reportURL); //Print URL to console
-
-            //TODO: Enable this couple of lines in order to open the browser with the report at the end of the test.
-            //if(Desktop.isDesktopSupported())
-            //  Desktop.getDesktop().browse(new URI(reportURL));
+            logger.info("Report URL - " + reportURL);
+            //System.out.println(reportURL); //Print URL to console
 
         }catch(Exception ex){
             ex.printStackTrace();
