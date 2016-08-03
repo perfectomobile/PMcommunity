@@ -116,15 +116,18 @@ public class NativeExe {
                 driver.findElement(By.xpath("(//UIASecureTextField)[2]")).sendKeys("Perfecto1");
                 reportiumClient.testStep("Clicking login button");
                 driver.findElement(By.xpath("(//UIAButton[@name='Log in'])[2]")).click();
+                logger.info("Clicking header");
                 reportiumClient.testStep("Clicking header");
                 driver.findElement(By.xpath("(//UIAStaticText[@name='Perfecto Mobile Community'])[1]")).click();
 
                 //logout
+                logger.info("Looking for image");
                 WebElement w = driver.findElement(By.xpath("//UIAImage[@name='hub-tab']"));
 
                 //String x = w.getAttribute("X");
                 //String y = w.getAttribute("Y");
 
+                logger.info("Performing swipe");
                 util.swipe("50%,5%","50%,50%",driver);
                 reportiumClient.testStep("Logging out");
                 logger.info("Logging out");
