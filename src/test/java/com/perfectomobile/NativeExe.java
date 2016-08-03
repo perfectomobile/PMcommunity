@@ -91,7 +91,7 @@ public class NativeExe {
 
             } catch (Exception e) {
                 reportiumClient.testStop(TestResultFactory.createFailure("Exception encountered",e));
-                logger.error("Exception encountered",e);
+                logger.error("Exception encountered",e.getMessage());
                 Assert.fail(e.getMessage());
             }
         } else{
@@ -136,7 +136,7 @@ public class NativeExe {
 
             } catch (Exception e) {
                 reportiumClient.testStop(TestResultFactory.createFailure("Exception encountered",e));
-                logger.error("Exception encountered",e);
+                logger.error("Exception encountered",e.getMessage());
                 Assert.fail("Error running the test " + e.getMessage());
             }
         }
@@ -149,15 +149,14 @@ public class NativeExe {
     }
 
     //constructing driver before each test, and releasing it after each test
-    @Parameters({"platformName" , "model" , "browserName" , "location", "appLocation","appPackage","bundleId"})
+    @Parameters({"platformName" , "browserName" , "location", "appLocation","appPackage","bundleId"})
     @BeforeMethod
-    public void beforeMethod(String platformName, String model, String browserName, String location,String appLocation,String appPackage,String bundleId) throws MalformedURLException {
+    public void beforeMethod(String platformName, String browserName, String location,String appLocation,String appPackage,String bundleId) throws MalformedURLException {
         logger.info("Running test on " + platformName + " platform, retry number " + Retry.getRetryCount());
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("user" , PERFECTO_USER);
         capabilities.setCapability("password" , PERFECTO_PASSWORD);
         capabilities.setCapability("platformName" , platformName);
-        capabilities.setCapability("model" , model);
         capabilities.setCapability("browserName" , browserName);
         capabilities.setCapability("location" , location);
 
@@ -176,7 +175,12 @@ public class NativeExe {
             driver = new IOSDriver(new URL("https://" + PERFECTO_HOST + "/nexperience/perfectomobile/wd/hub"), capabilities);
         }
         logger.info("...done");
-        logger.info("Running test on device " + driver.getCapabilities().getCapability("deviceName").toString());
+
+        Map<String,String> params = new HashMap<>();
+        params.put("property","model");
+        String deviceModel = (String) driver.executeScript("mobile:handset:info",params);
+
+        logger.info("Running test on device " + deviceModel);
 
         driver.manage().timeouts().implicitlyWait(15 , TimeUnit.SECONDS);
 

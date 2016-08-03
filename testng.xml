@@ -9,7 +9,6 @@
 
     <test name="Test Android">
         <parameter name="platformName" value="Android" />
-        <parameter name="model" value= "" />
         <parameter name="browserName" value="mobileOS" />
         <parameter name="location" value="" />
         <parameter name="appLocation" value="PUBLIC:PMcommunity\Bloomfire-perfecto-release.apk" />
@@ -22,7 +21,6 @@
 
     <test name="Test iOS">
         <parameter name="platformName" value="iOS" />
-        <parameter name="model" value= "" />
         <parameter name="browserName" value="mobileOS" />
         <parameter name="location" value="" />
         <parameter name="appPackage" value="" />
