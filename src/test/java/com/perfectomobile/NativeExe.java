@@ -53,7 +53,7 @@ public class NativeExe {
     @Test
 	public void testDevices() throws Exception {
         if (driver.getCapabilities().getCapability("platformName").toString().equalsIgnoreCase("android")){
-            reportiumClient.testStart("Android-Community,retry number " + Retry.getRetryCount()+1 ,new TestContext("Native EXE"));
+            reportiumClient.testStart("Android-Community,retry number " + (Retry.getRetryCount()+1) ,new TestContext("Native EXE"));
             try {
 
                 logger.info("Starting android test");
@@ -95,7 +95,7 @@ public class NativeExe {
                 Assert.fail(e.getMessage());
             }
         } else{
-            reportiumClient.testStart("IOS-Community, retry number " + Retry.getRetryCount()+1,new TestContext("Native EXE"));
+            reportiumClient.testStart("IOS-Community, retry number " + (Retry.getRetryCount()+1),new TestContext("Native EXE"));
             logger.info("Starting IOS test");
             try {
                 driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
